@@ -1,0 +1,83 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #030303;
+    font-family: 'Cairo', sans-serif;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* خلفية النيون */
+.glow-container {
+    position: absolute; width: 100%; height: 100%;
+    z-index: 1; filter: blur(120px);
+}
+.ball {
+    position: absolute; width: 500px; height: 500px;
+    border-radius: 50%; background: linear-gradient(45deg, #6366f1, #d946ef);
+    opacity: 0.2; animation: float 15s infinite alternate;
+}
+.ball:nth-child(2) {
+    background: linear-gradient(45deg, #06b6d4, #6366f1);
+    right: -10%; bottom: -10%; animation-delay: -7s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(150px, 100px); }
+}
+
+/* شريط التقدم */
+.progress-bar-top {
+    position: fixed; top: 0; left: 0; height: 4px;
+    background: linear-gradient(90deg, #6366f1, #d946ef);
+    width: 25%; transition: 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 100;
+}
+
+.container { position: relative; z-index: 10; width: 85%; max-width: 1100px; }
+
+.step-num { font-size: 0.9rem; color: #818cf8; letter-spacing: 4px; display: block; margin-bottom: 10px; }
+
+.main-title {
+    font-size: clamp(4rem, 15vw, 9rem);
+    font-weight: 900; line-height: 0.8;
+    letter-spacing: -6px; margin-bottom: 30px;
+}
+
+.outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+}
+
+.bio {
+    font-size: 1.4rem; color: #94a3b8; max-width: 600px; line-height: 1.6;
+}
+
+.skills-chips { display: flex; gap: 10px; margin-top: 25px; }
+.skills-chips span {
+    padding: 6px 18px; border-radius: 50px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem; color: #cbd5e1;
+}
+
+.nav-btn {
+    margin-top: 50px; padding: 15px 50px; border-radius: 12px;
+    background: white; color: black; border: none;
+    font-family: 'Cairo'; font-weight: 900; cursor: pointer;
+    transition: 0.4s;
+}
+.nav-btn:hover { background: #818cf8; color: white; transform: scale(1.05); box-shadow: 0 0 40px rgba(129, 140, 248, 0.4); }
+
+/* أنيميشن الظهور */
+.step { display: none; }
+.step.active { display: block; animation: slideReveal 1s ease forwards; }
+
+@keyframes slideReveal {
+    from { opacity: 0; transform: translateX(-50px); filter: blur(10px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
